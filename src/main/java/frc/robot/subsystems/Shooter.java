@@ -4,11 +4,22 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
-  public Shooter() {}
+  private Spark shooterSpark;
+
+  private TalonSRX articulator;
+  private Talon indexer;
+
+  public Shooter() {
+
+  }
 
   @Override
   public void periodic() {
