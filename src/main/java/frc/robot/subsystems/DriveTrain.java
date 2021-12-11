@@ -11,10 +11,16 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
   // declare our variables
-  TalonFX frontL;
-  TalonFX frontR;
-  TalonFX backL;
-  TalonFX backR;
+  private TalonFX frontL;
+  private TalonFX frontR;
+  private TalonFX backL;
+  private TalonFX backR;
+
+  public enum DriveMode {
+    TANK, TANKSLOW, ARCADE
+  }
+
+  private DriveMode mode;
 
   /** Creates a new DriveTrain. */
   public DriveTrain() {
@@ -28,6 +34,14 @@ public class DriveTrain extends SubsystemBase {
 
   }
 
+  public DriveMode getMode() {
+    return mode;
+  }
+
+  public void setMode(DriveMode mode) {
+    this.mode = mode;
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
@@ -37,5 +51,15 @@ public class DriveTrain extends SubsystemBase {
   public void tankDrive(double leftSpeed, double rightSpeed) {
     frontL.set(ControlMode.PercentOutput, leftSpeed);
     frontR.set(ControlMode.PercentOutput, rightSpeed);
+  }
+
+  public void arcadeDrive(double x, double y) {
+    frontL.set(ControlMode.PercentOutput, y+x);
+    frontR.set(ControlMode.PercentOutput, y-x);
+  }
+
+  public void stop() {
+    frontL.set(ControlMode.PercentOutput, 0.0);
+    frontR.set(ControlMode.PercentOutput, 0.0);
   }
 }
