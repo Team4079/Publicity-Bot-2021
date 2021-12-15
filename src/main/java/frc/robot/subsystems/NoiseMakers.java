@@ -4,14 +4,32 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class NoiseMakers extends SubsystemBase {
   /** Creates a new NoiseMakers. */
-  public NoiseMakers() {}
+  Relay leftHorn;
+  Relay rightHorn;
+
+  public NoiseMakers() {
+    leftHorn = new Relay(0);
+    rightHorn = new Relay(1);
+  }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+
+  public void makeNoise() {
+    leftHorn.set(Value.kOn);
+    rightHorn.set(Value.kOn);
+  }
+
+  public void stop() {
+    leftHorn.set(Value.kOff);
+    rightHorn.set(Value.kOff);
   }
 }
