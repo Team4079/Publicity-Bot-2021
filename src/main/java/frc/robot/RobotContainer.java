@@ -54,7 +54,7 @@ public class RobotContainer {
     
     configureButtonBindings();
 
-    driveTrain.setDefaultCommand(tankDrive);
+    driveTrain.setDefaultCommand(arcadeDrive);
   }
 
   /**

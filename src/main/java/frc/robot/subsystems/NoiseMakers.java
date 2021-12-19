@@ -14,8 +14,8 @@ public class NoiseMakers extends SubsystemBase {
   Relay rightHorn;
 
   public NoiseMakers() {
-    leftHorn = new Relay(0);
-    rightHorn = new Relay(1);
+    leftHorn = new Relay(2);
+    rightHorn = new Relay(3);
   }
 
   @Override

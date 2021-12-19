@@ -15,12 +15,12 @@ public class Shooter extends SubsystemBase {
   private Spark shooterSpark;
 
   private TalonSRX articulator;
-  private Talon indexer;
+  private Spark indexer;
 
   public Shooter() {
     shooterSpark = new Spark(0);
-    articulator = new TalonSRX(1);
-    indexer = new Talon(2);
+    articulator = new TalonSRX(4);
+    indexer = new Spark(1);
   }
 
   @Override
