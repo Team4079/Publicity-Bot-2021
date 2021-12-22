@@ -24,12 +24,14 @@ public class NoiseMakers extends SubsystemBase {
   }
 
   public void makeNoise() {
-    leftHorn.set(Value.kOn);
-    rightHorn.set(Value.kOn);
+    leftHorn.set(Value.kForward);
+    rightHorn.set(Value.kForward);
+    System.out.println("a");
   }
 
   public void stop() {
     leftHorn.set(Value.kOff);
     rightHorn.set(Value.kOff);
+    System.out.println("b");
   }
 }

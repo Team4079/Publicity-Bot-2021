@@ -8,8 +8,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.TankDrive;
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
 
@@ -64,17 +62,17 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // driveA = new JoystickButton(drivePad, 1);
-    // driveA.whileHeld(new ShootHigh());
+    driveA = new JoystickButton(drivePad, 1);
+    driveA.whileHeld(new MakeSomeNoise(noiseMakers));
 
     driveB = new JoystickButton(drivePad, 2);
     driveB.whenPressed(new ChangeDriveMode(driveTrain, drivePad)) ;
 
-    // driveX = new JoystickButton(drivePad, 3);
-    // driveX.whileHeld(new OuttakeBalls(0.3, false));
+    driveX = new JoystickButton(drivePad, 3);
+    driveX.whileHeld(new IndexShirts(shooter));
 
-    // driveY = new JoystickButton(drivePad, 4);
-    // driveY.whileHeld(new IntakeBalls());
+    driveY = new JoystickButton(drivePad, 4);
+    driveY.whileHeld(new ActuateUp(shooter, true));
 
     // driveLeftBumper = new JoystickButton(drivePad, 5);
     // driveLeftBumper.whenPressed(new GamepadSlowModeDrive()) ;
@@ -83,9 +81,8 @@ public class RobotContainer {
     // driveRightBumper.whenPressed(new GamepadDrive());
 
 
-    // driveStart = new JoystickButton(drivePad, 8);
-    // driveStart.whenHeld(new SelfTestCommand());
-
+    driveStart = new JoystickButton(drivePad, 8);
+    driveStart.whenPressed(new Test(driveTrain));
 
   }
 

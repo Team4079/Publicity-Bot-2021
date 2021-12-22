@@ -5,11 +5,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Shooter;
 
 public class ActuateUp extends CommandBase {
   /** Creates a new ActuateUp. */
-  public ActuateUp() {
+  Shooter shooter;
+  boolean forward;
+  public ActuateUp(Shooter shooter, boolean forward) {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(shooter);
+
+    this.shooter = shooter;
+    this.forward = forward;
   }
 
   // Called when the command is initially scheduled.
@@ -18,7 +25,9 @@ public class ActuateUp extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    shooter.articulate(forward);
+  }
 
   // Called once the command ends or is interrupted.
   @Override

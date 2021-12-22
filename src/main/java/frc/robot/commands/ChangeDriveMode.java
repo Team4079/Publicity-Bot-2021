@@ -29,14 +29,24 @@ public class ChangeDriveMode extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if(driveTrain.getMode() == DriveMode.TANK) {
-      driveTrain.setMode(DriveMode.TANKSLOW);
-    }
+    // if(driveTrain.getMode() == DriveMode.TANK) {
+    //   driveTrain.setMode(DriveMode.TANKSLOW);
+    // }
+    // /*else if (driveTrain.getMode() == DriveMode.TANKSLOW) {
+    //   driveTrain.setMode(DriveMode.ARCADE);
+    // }*/
+    // else {
+    //   driveTrain.setMode(DriveMode.TANK);
+    // }
+
+    //if(driveTrain.getMode() == DriveMode.ARCADE) {
+      driveTrain.setMode(DriveMode.ARCADESLOW);
+    //}
     /*else if (driveTrain.getMode() == DriveMode.TANKSLOW) {
       driveTrain.setMode(DriveMode.ARCADE);
     }*/
-    else {
-      driveTrain.setMode(DriveMode.TANK);
-    }
+    //else {
+      //driveTrain.setMode(DriveMode.ARCADE);
+    //}
   }
 }

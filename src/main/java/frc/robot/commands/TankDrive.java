@@ -32,6 +32,7 @@ public class TankDrive extends CommandBase {
       driveTrain.tankDrive(drivePad.getLeftAnalogY()*.5, drivePad.getRightAnalogY()*.5);
     }
     else {
+      // System.out.println(drivePad.getRightAnalogY());
       driveTrain.tankDrive(drivePad.getLeftAnalogY(), drivePad.getRightAnalogY());
     }
   }

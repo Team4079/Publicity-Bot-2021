@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.music.Orchestra;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -17,7 +18,7 @@ public class DriveTrain extends SubsystemBase {
   private TalonFX backR;
 
   public enum DriveMode {
-    TANK, TANKSLOW, ARCADE
+    TANK, TANKSLOW, ARCADE, ARCADESLOW
   }
 
   private DriveMode mode;
@@ -30,8 +31,9 @@ public class DriveTrain extends SubsystemBase {
     backR = new TalonFX(3);
     backL.follow(frontL);
     backR.follow(frontR);
-    frontR.setInverted(true);
-
+    frontL.setInverted(true);
+    backL.setInverted(true);
+    setMode(DriveMode.ARCADE);
   }
 
   public DriveMode getMode() {
@@ -54,12 +56,22 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void arcadeDrive(double x, double y) {
-    frontL.set(ControlMode.PercentOutput, y+x);
-    frontR.set(ControlMode.PercentOutput, y-x);
+    frontL.set(ControlMode.PercentOutput, y-x);
+    frontR.set(ControlMode.PercentOutput, y+x);
   }
 
   public void stop() {
     frontL.set(ControlMode.PercentOutput, 0.0);
     frontR.set(ControlMode.PercentOutput, 0.0);
+  }
+
+  public void troll() {
+    Orchestra orch = new Orchestra();
+    orch.addInstrument(frontL);
+    orch.addInstrument(frontR);
+    orch.addInstrument(backL);
+    orch.addInstrument(backR);
+    orch.loadMusic("test.chrp");
+    orch.play();
   }
 }

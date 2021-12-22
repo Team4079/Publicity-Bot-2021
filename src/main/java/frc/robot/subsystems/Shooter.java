@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Spark;
@@ -30,10 +31,12 @@ public class Shooter extends SubsystemBase {
 
   public void shoot() {
     shooterSpark.set(1.0);
+    System.out.println("c");
   }
 
   public void stopShooting() {
     shooterSpark.set(0.0);
+    System.out.println("d");
   }
 
   public void index() {
@@ -44,5 +47,14 @@ public class Shooter extends SubsystemBase {
     indexer.set(0.0);
   }
 
+  public void articulate(boolean forward) {
+    if (forward) {
+      articulator.set(ControlMode.PercentOutput, .1);
+    }
+    else {
+      articulator.set(ControlMode.PercentOutput, -.1);
+    }
+    System.out.println("art");
+  }
 
 }
