@@ -24,29 +24,32 @@ public class ChangeDriveMode extends InstantCommand {
   public ChangeDriveMode(DriveTrain driveTrain, LogitechGamingPad drivePad) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveTrain);
+    this.driveTrain = driveTrain;
+    this.drivePad = drivePad;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // if(driveTrain.getMode() == DriveMode.TANK) {
-    //   driveTrain.setMode(DriveMode.TANKSLOW);
-    // }
-    // /*else if (driveTrain.getMode() == DriveMode.TANKSLOW) {
-    //   driveTrain.setMode(DriveMode.ARCADE);
-    // }*/
-    // else {
-    //   driveTrain.setMode(DriveMode.TANK);
-    // }
-
-    //if(driveTrain.getMode() == DriveMode.ARCADE) {
-      driveTrain.setMode(DriveMode.ARCADESLOW);
-    //}
+    System.out.println(driveTrain.getMode());
+    if(driveTrain.getMode() == DriveMode.TANK) {
+      driveTrain.setMode(DriveMode.TANKSLOW);
+    }
     /*else if (driveTrain.getMode() == DriveMode.TANKSLOW) {
       driveTrain.setMode(DriveMode.ARCADE);
     }*/
-    //else {
-      //driveTrain.setMode(DriveMode.ARCADE);
-    //}
+    else if (driveTrain.getMode() == DriveMode.TANKSLOW) {
+      driveTrain.setMode(DriveMode.TANK);
+    }
+    else if(driveTrain.getMode() == DriveMode.ARCADE) {
+      driveTrain.setMode(DriveMode.ARCADESLOW);
+    }
+    // else if (driveTrain.getMode() == DriveMode.TANKSLOW) {
+    //   driveTrain.setMode(DriveMode.ARCADE);
+    // }
+    else {
+      driveTrain.setMode(DriveMode.ARCADE);
+    }
+    System.out.println(driveTrain.getMode());
   }
 }

@@ -38,6 +38,8 @@ public class RobotContainer {
   public JoystickButton driveRightBumper;
   public JoystickButton driveLeftBumper;
 
+ 
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -53,6 +55,9 @@ public class RobotContainer {
     configureButtonBindings();
 
     driveTrain.setDefaultCommand(arcadeDrive);
+
+  
+
   }
 
   /**
@@ -66,21 +71,23 @@ public class RobotContainer {
     driveA.whileHeld(new MakeSomeNoise(noiseMakers));
 
     driveB = new JoystickButton(drivePad, 2);
-    driveB.whenPressed(new ChangeDriveMode(driveTrain, drivePad)) ;
+    driveB.whenPressed(new ChangeDriveMode(driveTrain, drivePad));
 
     driveX = new JoystickButton(drivePad, 3);
     driveX.whileHeld(new IndexShirts(shooter));
 
     driveY = new JoystickButton(drivePad, 4);
-    driveY.whileHeld(new ActuateUp(shooter, true));
+    driveY.whileHeld(new Shoot(shooter));
 
-    // driveLeftBumper = new JoystickButton(drivePad, 5);
-    // driveLeftBumper.whenPressed(new GamepadSlowModeDrive()) ;
+    // Actuate Up
+    driveLeftBumper = new JoystickButton(drivePad, 5);
+    driveLeftBumper.whileHeld(new Actuate(shooter, false));
     
-    // driveRightBumper = new JoystickButton(drivePad, 6);
-    // driveRightBumper.whenPressed(new GamepadDrive());
+    // Actuate Down
+    driveRightBumper = new JoystickButton(drivePad, 6);
+    driveRightBumper.whileHeld(new Actuate(shooter, true));
 
-
+    // TODO: confirm driveStart is ID 8
     driveStart = new JoystickButton(drivePad, 8);
     driveStart.whenPressed(new Test(driveTrain));
 

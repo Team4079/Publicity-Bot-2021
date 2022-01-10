@@ -13,19 +13,17 @@ public class Test extends CommandBase {
   public Test(DriveTrain driveTrain) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveTrain);
-
     this.driveTrain = driveTrain;
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    driveTrain.troll();
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    driveTrain.troll();
   }
 
   // Called once the command ends or is interrupted.

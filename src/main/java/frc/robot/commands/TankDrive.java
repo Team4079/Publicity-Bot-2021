@@ -28,6 +28,7 @@ public class TankDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    System.out.println(driveTrain.getMode());
     if (driveTrain.getMode() == DriveMode.TANKSLOW) {
       driveTrain.tankDrive(drivePad.getLeftAnalogY()*.5, drivePad.getRightAnalogY()*.5);
     }

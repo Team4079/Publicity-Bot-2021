@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.music.Orchestra;
 
@@ -33,6 +34,10 @@ public class DriveTrain extends SubsystemBase {
     backR.follow(frontR);
     frontL.setInverted(true);
     backL.setInverted(true);
+    frontL.setNeutralMode(NeutralMode.Coast);
+    frontR.setNeutralMode(NeutralMode.Coast);
+    backL.setNeutralMode(NeutralMode.Coast);
+    backR.setNeutralMode(NeutralMode.Coast);
     setMode(DriveMode.ARCADE);
   }
 
@@ -46,6 +51,7 @@ public class DriveTrain extends SubsystemBase {
 
   @Override
   public void periodic() {
+    //System.out.println("a");
     // This method will be called once per scheduler run
 
   }
@@ -56,8 +62,8 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void arcadeDrive(double x, double y) {
-    frontL.set(ControlMode.PercentOutput, y-x);
-    frontR.set(ControlMode.PercentOutput, y+x);
+    frontL.set(ControlMode.PercentOutput, 1.0*(y-x));
+    frontR.set(ControlMode.PercentOutput, 1.0*(y+x));
   }
 
   public void stop() {
@@ -71,7 +77,7 @@ public class DriveTrain extends SubsystemBase {
     orch.addInstrument(frontR);
     orch.addInstrument(backL);
     orch.addInstrument(backR);
-    orch.loadMusic("test.chrp");
+    orch.loadMusic("aot.chrp");
     orch.play();
   }
 }

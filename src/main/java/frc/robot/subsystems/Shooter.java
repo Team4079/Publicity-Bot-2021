@@ -8,7 +8,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
@@ -40,7 +39,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void index() {
-    indexer.set(1.0);
+    indexer.set(0.4);
   }
 
   public void stopIndexing() {
@@ -49,12 +48,16 @@ public class Shooter extends SubsystemBase {
 
   public void articulate(boolean forward) {
     if (forward) {
-      articulator.set(ControlMode.PercentOutput, .1);
+      articulator.set(ControlMode.PercentOutput, .4);
     }
     else {
-      articulator.set(ControlMode.PercentOutput, -.1);
+      articulator.set(ControlMode.PercentOutput, -.4);
     }
     System.out.println("art");
+  }
+
+  public void stopArticulating() {
+    articulator.set(ControlMode.PercentOutput, 0.0);
   }
 
 }

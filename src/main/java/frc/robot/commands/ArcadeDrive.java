@@ -29,12 +29,13 @@ public class ArcadeDrive extends CommandBase {
   @Override
   public void execute() {
     if (driveTrain.getMode() == DriveMode.ARCADESLOW) {
-      driveTrain.arcadeDrive(drivePad.getRightAnalogX()*.5, drivePad.getLeftAnalogY()*.5);
+      driveTrain.arcadeDrive(drivePad.getRightAnalogX()*.3, drivePad.getLeftAnalogY()*.3);
     }
     else {
       // System.out.println(drivePad.getRightAnalogY());
       driveTrain.arcadeDrive(drivePad.getRightAnalogX(), drivePad.getLeftAnalogY());
     }
+    //driveTrain.arcadeDrive(drivePad.getRightAnalogX()*.5, drivePad.getLeftAnalogY()*.5);
   }
 
   // Called once the command ends or is interrupted.
