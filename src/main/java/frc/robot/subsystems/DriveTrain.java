@@ -77,7 +77,7 @@ public class DriveTrain extends SubsystemBase {
     orch.addInstrument(frontR);
     orch.addInstrument(backL);
     orch.addInstrument(backR);
-    orch.loadMusic("aot.chrp");
+    orch.loadMusic("FightSong.chrp");
     orch.play();
   }
 }

@@ -30,12 +30,10 @@ public class Shooter extends SubsystemBase {
 
   public void shoot() {
     shooterSpark.set(1.0);
-    System.out.println("c");
   }
 
   public void stopShooting() {
     shooterSpark.set(0.0);
-    System.out.println("d");
   }
 
   public void index() {
@@ -53,7 +51,6 @@ public class Shooter extends SubsystemBase {
     else {
       articulator.set(ControlMode.PercentOutput, -.4);
     }
-    System.out.println("art");
   }
 
   public void stopArticulating() {
