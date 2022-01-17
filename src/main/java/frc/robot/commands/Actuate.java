@@ -31,15 +31,16 @@ public class Actuate extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (drivePad.checkDPad(0)) {
-      shooter.articulate(false);
-    } 
-    else if (drivePad.checkDPad(4)) {
-      shooter.articulate(true);
-    } 
-    else {
-      shooter.stopArticulating();
-    }
+    // if (drivePad.checkDPad(0)) {
+    //   System.out.println("a");
+    //   shooter.articulate(false);
+    // } 
+    // else if (drivePad.checkDPad(4)) {
+    //   shooter.articulate(true);
+    // } 
+    // else {
+    //   shooter.stopArticulating();
+    // }
   }
 
   // Called once the command ends or is interrupted.

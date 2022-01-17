@@ -57,7 +57,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     driveTrain.setDefaultCommand(arcadeDrive);
-    shooter.setDefaultCommand(actuate);
+    //shooter.setDefaultCommand(actuate);
   
 
   }
@@ -81,13 +81,13 @@ public class RobotContainer {
     driveY = new JoystickButton(drivePad, 4);
     driveY.whenPressed(new Shoot(shooter));
 
-    // // Actuate Up
-    // driveLeftBumper = new JoystickButton(drivePad, 5);
-    // driveLeftBumper.whileHeld(new Actuate(shooter, false, drivePad));
+    // Actuate Up
+    driveLeftBumper = new JoystickButton(drivePad, 5);
+    driveLeftBumper.whileHeld(new Actuate(shooter, false, drivePad));
     
-    // // Actuate Down
-    // driveRightBumper = new JoystickButton(drivePad, 6);
-    // driveRightBumper.whileHeld(new Actuate(shooter, true, drivePad));
+    // Actuate Down
+    driveRightBumper = new JoystickButton(drivePad, 6);
+    driveRightBumper.whileHeld(new Actuate(shooter, true, drivePad));
 
     // TODO: confirm driveStart is ID 8
     driveStart = new JoystickButton(drivePad, 8);

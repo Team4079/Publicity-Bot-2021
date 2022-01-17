@@ -51,6 +51,7 @@ public class DriveTrain extends SubsystemBase {
 
   @Override
   public void periodic() {
+    //System.out.println(frontL.getSensorCollection().getIntegratedSensorPosition());
     //System.out.println("a");
     // This method will be called once per scheduler run
 
@@ -62,8 +63,8 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void arcadeDrive(double x, double y) {
-    frontL.set(ControlMode.PercentOutput, 1.0*(y-x));
-    frontR.set(ControlMode.PercentOutput, 1.0*(y+x));
+    frontL.set(ControlMode.PercentOutput, y-x);
+    frontR.set(ControlMode.PercentOutput, y+x);
   }
 
   public void stop() {
@@ -72,6 +73,7 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void troll() {
+    stop();
     Orchestra orch = new Orchestra();
     orch.addInstrument(frontL);
     orch.addInstrument(frontR);
