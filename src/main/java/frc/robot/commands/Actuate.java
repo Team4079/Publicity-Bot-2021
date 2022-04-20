@@ -8,22 +8,22 @@ import frc.robot.utils.LogitechGamingPad;
 public class Actuate extends CommandBase {
   /** Creates a new ActuateUp. */
   Shooter shooter;
-  boolean forward;
+  boolean up;
   LogitechGamingPad drivePad;
 
-  public Actuate(Shooter shooter, boolean forward, LogitechGamingPad drivePad) {
+  public Actuate(Shooter shooter, boolean up, LogitechGamingPad drivePad) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(shooter);
 
     this.shooter = shooter;
-    this.forward = forward;
+    this.up = up;
     this.drivePad = drivePad;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooter.articulate(forward);
+    shooter.articulate(up);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

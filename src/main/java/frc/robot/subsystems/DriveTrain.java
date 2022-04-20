@@ -8,14 +8,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.music.Orchestra;
-import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
-import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
-import edu.wpi.first.math.util.Units;
-import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.Constants;
 
@@ -28,10 +21,6 @@ public class DriveTrain extends SubsystemBase {
 
   private boolean slowModeOn = true;
 
-  private AHRS navX = new AHRS(Port.kMXP, (byte) 50);
-  private DifferentialDriveOdometry odometry;
-  private DifferentialDriveKinematics kinematics;
-  private Pose2d pose;
 
   /** Creates a new DriveTrain. */
   public DriveTrain() {
@@ -48,57 +37,20 @@ public class DriveTrain extends SubsystemBase {
     frontR.setInverted(false);
     backR.setInverted(false);
 
-    frontL.setNeutralMode(NeutralMode.Coast);
-    frontR.setNeutralMode(NeutralMode.Coast);
-    backL.setNeutralMode(NeutralMode.Coast);
-    backR.setNeutralMode(NeutralMode.Coast);
+    frontL.setNeutralMode(NeutralMode.Brake);
+    frontR.setNeutralMode(NeutralMode.Brake);
+    backL.setNeutralMode(NeutralMode.Brake);
+    backR.setNeutralMode(NeutralMode.Brake);
 
-    initOdo();
 
   }
 
   @Override
   public void periodic() {
-    // pose = odometry.update(getHeading(),
-    // Units.inchesToMeters(getInchesFromNativeUnits(getLeftEncoderCount())),
-    // Units.inchesToMeters(getInchesFromNativeUnits(getRightEncoderCount())));
 
   }
 
-  public void initOdo() {
-    resetEncoders();
-    navX.reset();
-    odometry = new DifferentialDriveOdometry(getHeading());
-    kinematics = new DifferentialDriveKinematics(Units.inchesToMeters(22.625));
-  }
-
-  public void resetEncoders() {
-    frontL.getSensorCollection().setIntegratedSensorPosition(0, 0);
-    frontR.getSensorCollection().setIntegratedSensorPosition(0, 0);
-  }
-
-  public Rotation2d getHeading() {
-    System.out.println("Angle: " + -navX.getAngle());
-    return Rotation2d.fromDegrees(-navX.getAngle());
-  }
-
-  // TODO
-  public double getNativeUnitsFromInches(double inches) {
-    return 0;
-  }
-
-  // TODO
-  public double getInchesFromNativeUnits(double native_units) {
-    return 0;
-  }
-
-  public double getLeftEncoderCount() {
-    return frontL.getSensorCollection().getIntegratedSensorPosition();
-  }
-
-  public double getRightEncoderCount() {
-    return frontR.getSensorCollection().getIntegratedSensorPosition();
-  }
+  
 
   public void tankDrive(double leftSpeed, double rightSpeed) {
     frontL.set(ControlMode.PercentOutput, leftSpeed);
